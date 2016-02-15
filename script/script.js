@@ -51,21 +51,14 @@
 	}
 	Clock.prototype.timeSet = function() {
 		var currentTime;
-		currentTime = new Date().getTime();
+		currentTime = Date.now();
 		return currentTime;
 	};
 	Clock.prototype.formatTime = function(timeMs) {
-		var t = timeMs;
-		var ms = t % 1000;
-		t -= ms;
-		t = Math.floor(t / 1000);
-		var s = t % 60;
-		t -= s;
-		t = Math.floor(t / 60);
-		var m = t % 60;
-		t -= m;
-		t = Math.floor(t / 60);
-		var h = t % 60;
+		var datte = new Date(timeMs);
+		var h = datte.getHours();
+		var m = datte.getMinutes();
+		var s = datte.getSeconds();
 		if (h < 10) h = '0' + h;
 		if (m < 10) m = '0' + m;
 		if (s < 10) s = '0' + s;
