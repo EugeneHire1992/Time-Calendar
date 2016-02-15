@@ -1,71 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<script type="text/javascript" src="script/jquery-2.1.4.js"></script>
-	<script type="text/javascript" src="script/underscore.js"></script>
-	<script type="text/javascript" src="script/script.js"></script>
-	<style>
-		.switcher {
-		  margin-top: 50px;
-		  text-align: center;
-		}
-		.switcher__button {
-		  cursor: pointer;
-		  border-radius: 4px;
-		  display: inline-block;
-		  margin: 0 50px;
-		  padding: 20px;
-		  font-size: 22px;
-		  background: tomato;
-		  color: white;
-		}
-
-		.display {
-		  font-size: 35px;  
-		  text-align: center; 
-		  margin-top: 30px;
-		  color: white;
-		  background: Wheat;
-		  padding: 50px;
-		  min-width: 100%:
-		}
-
-		.weekday {
-		  border-radius: 4px;
-		  background: SkyBlue;
-		  color: white;
-		  padding: 15px;
-		  font-size: 18px;  
-		}
-
-		.weekday--current {
-		  margin-top: -4px;
-		  padding: 19px;
-		  background: SlateBlue;
-		}
-	</style>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-	<div class="switcher">
-    	<div class="switcher__button">Week</div>
-    	<div class="switcher__button">Day</div>
-  	</div>
-  	<div class="display">
-	    <span class="weekday">Monday</span>
-	    <span class="weekday">Thuesday</span>
-	    <span class="weekday">Wednesday</span>
-	    <span class="weekday">Thursday</span>
-	    <span class="weekday">Friday</span>
-	    <span class="weekday">Saturday</span>
-	    <span class="weekday weekday--current">Sunday</span>
-  	</div>
-	<div id="root">
-		
-	</div>
-	<script>
-		var calend = new Calendar(root);
-	</script>
+  <div class="switcher">
+    <div class="switcher__button">Week</div>
+    <div class="switcher__button">Day</div>
+  </div>
+  <div class="display">
+    <span class="weekday">Monday</span>
+    <span class="weekday">Thuesday</span>
+    <span class="weekday">Wednesday</span>
+    <span class="weekday">Thursday</span>
+    <span class="weekday">Friday</span>
+    <span class="weekday">Saturday</span>
+    <span class="weekday weekday--current">Sunday</span>
+  </div>
 </body>
 </html>
