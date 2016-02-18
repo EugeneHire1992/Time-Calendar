@@ -4,21 +4,16 @@
 	function Calendar(node) {
 		this.$node = $(node);
 		this.buildCover();
-		this.$switcher = $(node).find('.switcher');
 		this.root = $(node).find('.display');
-		this.render();
-		this.switch();
+		this.renderCalendarInfo();
+		this.switchCalendarInfo(this.$node);
 	}
 	Calendar.prototype.buildCover = function() {
-		var switcher = document.createElement('div');
-		$(switcher).addClass('switcher')
-			.append("<div class='switcher__button'>Week</div>" +
-				"<div class='switcher__button'>Day</div>");
-		var display = document.createElement('div');
-		$(display).addClass('display');
-		this.$node.append(switcher).append(display);
+		var wrapper ='<div class="switcher"><%_.each(["Week","Day"],function(index){%><div class="switcher__button"><%=index%></div><%});%></div><div class="display"></div>';
+		var templ = _.template(wrapper);
+		this.$node.append(templ);
 	};
-	Calendar.prototype.render = function(rulse) {
+	Calendar.prototype.renderCalendarInfo = function(rulse) {
 		this.root.html('');
 		var _self = this;
 		clearInterval(this.intervalClock);
@@ -36,12 +31,12 @@
 				break;
 		}
 	};
-	Calendar.prototype.switch = function() {
+	Calendar.prototype.switchCalendarInfo = function(node) {
 		var _self = this;
-		var $bnt = this.$switcher.find('.switcher__button');
+		var $bnt = node.find('.switcher__button');
 		this.intervalClock = null;
 		$bnt.on('click', function() {
-			_self.render(this.textContent);
+			_self.renderCalendarInfo(this.textContent);
 		});
 	};
 
@@ -100,7 +95,6 @@
 		dayOfWeekHtml.forEach(function(item, i, arr) {
 			$(_self.root).append(arr[i]);
 		});
-
 	};
 
 	window.Calendar = Calendar;
