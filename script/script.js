@@ -1,40 +1,46 @@
 (function() {
 	'use strict';
 
-	function Calendar(node) {
+	function Calendar(node) {//вынести объекты в отельные файлы
 		this.$node = $(node);
 		this.buildCover();
 		this.root = $(node).find('.display');
+		this.calendarClock = new Clock(this.root);
+		this.calendarWeekCalendar = new WeekCalendar(this.root);
 		this.renderCalendarInfo();
 		this.switchCalendarInfo(this.$node);
+		
 	}
-	Calendar.prototype.buildCover = function() {
-		var wrapper ='<div class="switcher"><%_.each(["Week","Day"],function(index){%><div class="switcher__button"><%=index%></div><%});%></div><div class="display"></div>';
+	Calendar.prototype.buildCover = function() {//все теплы вынести в отдельный файл
+		var wrapper ='<div class="switcher">'+
+						'<%_.each(["Week","Day"],function(index){%>'+
+						'<div class="switcher__button"><%=index%></div><%});%></div>'+
+					'<div class="display"></div>';
 		var templ = _.template(wrapper);
 		this.$node.append(templ);
 	};
 	Calendar.prototype.renderCalendarInfo = function(rulse) {
-		this.root.html('');
 		var _self = this;
-		clearInterval(this.intervalClock);
+		_self.root.html('');
+		clearInterval(_self.intervalClock);
 		switch (rulse) {
 			case 'Week':
-				new WeekCalendar(this.root);
+				_self.calendarWeekCalendar.renderWeek();
 				break;
 			case 'Day':
-				this.intervalClock = setInterval(function() {
-					return new Clock(_self.root);
+				_self.intervalClock = setInterval(function() {
+					return _self.calendarClock.renderClock();
 				}, 1000);
 				break;
 			default:
-				new WeekCalendar(this.root);
+				_self.calendarWeekCalendar.renderWeek();
 				break;
 		}
 	};
 	Calendar.prototype.switchCalendarInfo = function(node) {
 		var _self = this;
 		var $bnt = node.find('.switcher__button');
-		this.intervalClock = null;
+		_self.intervalClock = null;
 		$bnt.on('click', function() {
 			_self.renderCalendarInfo(this.textContent);
 		});
@@ -42,7 +48,6 @@
 
 	function Clock(node) {
 		this.root = node;
-		this.renderClock();
 	}
 	Clock.prototype.timeSet = function() {
 		var currentTime;
@@ -67,11 +72,10 @@
 
 	function WeekCalendar(node) {
 		this.root = node;
-		this.weekDay = ['Monday', 'Thuesday',
+		this.weekDays = ['Monday', 'Thuesday',
 			'Wednesday', 'Thursday',
 			'Friday', 'Saturday', 'Sanday'
 		];
-		this.renderWeek();
 	}
 	WeekCalendar.prototype.daySet = function() {
 		var currentDate = new Date();
@@ -80,16 +84,16 @@
 		else currentDay -= 1;
 		return currentDay;
 	};
-	WeekCalendar.prototype.renderWeek = function() {
+	WeekCalendar.prototype.renderWeek = function() {//переписать на шаблон
 		var currentDay = this.daySet();
 		var _self = this;
 		var dayOfWeekHtml = [];
-		for (var i = 0; i < this.weekDay.length; i += 1) {
+		for (var i = 0; i < this.weekDays.length; i += 1) {
 			var weekDay = document.createElement('span');
 			var className = 'weekday';
 			if (i === currentDay) className = 'weekday weekday--current';
 			$(weekDay).addClass(className)
-				.text(this.weekDay[i]);
+				.text(this.weekDays[i]);
 			dayOfWeekHtml.push(weekDay);
 		}
 		dayOfWeekHtml.forEach(function(item, i, arr) {
