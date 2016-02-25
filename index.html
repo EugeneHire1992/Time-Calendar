@@ -5,8 +5,48 @@
 	<title>Document</title>
 	<script type="text/javascript" src="script/jquery-2.1.4.js"></script>
 	<script type="text/javascript" src="script/underscore.js"></script>
+	<script type="text/javascript" src="clock/script.js"></script>
 	<script type="text/javascript" src="script/script.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<style>
+		.switcher {
+		  margin-top: 50px;
+		  text-align: center;
+		}
+		.switcher__button {
+		  cursor: pointer;
+		  border-radius: 4px;
+		  display: inline-block;
+		  margin: 0 50px;
+		  padding: 20px;
+		  font-size: 22px;
+		  background: tomato;
+		  color: white;
+		}
+
+		.display {
+		  font-size: 35px;  
+		  text-align: center; 
+		  margin-top: 30px;
+		  color: white;
+		  background: Wheat;
+		  padding: 50px;
+		  min-width: 100%:
+		}
+
+		.weekday {
+		  border-radius: 4px;
+		  background: SkyBlue;
+		  color: white;
+		  padding: 15px;
+		  font-size: 18px;  
+		}
+
+		.weekday--current {
+		  margin-top: -4px;
+		  padding: 19px;
+		  background: SlateBlue;
+		}
+	</style>
 </head>
 <body>
 	<div class="switcher">
