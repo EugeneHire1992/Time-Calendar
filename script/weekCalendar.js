@@ -2,10 +2,17 @@
 	'use strict';
 	function WeekCalendar(node) {
 		this.root = node;
-		this.weekDays = ['Monday', 'Thuesday',
-			'Wednesday', 'Thursday',
-			'Friday', 'Saturday', 'Sanday'
-		];
+		this.weekDays = {
+			days:[
+				{dayName:'Monday', dayIndex:'0'},
+				{dayName:'Tuesday', dayIndex:'1'},
+				{dayName:'Wednesday', dayIndex:'2'},
+				{dayName:'Thursday', dayIndex:'3'},
+				{dayName:'Friday', dayIndex:'4'},
+				{dayName:'Saturday', dayIndex:'5'},
+				{dayName:'Sunday', dayIndex:'6'}
+			]
+		};
 	}
 	WeekCalendar.prototype.daySet = function() {
 		var currentDate = new Date();
@@ -16,19 +23,13 @@
 	};
 	WeekCalendar.prototype.renderWeek = function() {//переписать на шаблон
 		var currentDay = this.daySet();
-		var _self = this;
-		var dayOfWeekHtml = [];
-		for (var i = 0; i < this.weekDays.length; i += 1) {
-			var weekDay = document.createElement('span');
-			var className = 'weekday';
-			if (i === currentDay) className = 'weekday weekday--current';
-			$(weekDay).addClass(className)
-				.text(this.weekDays[i]);
-			dayOfWeekHtml.push(weekDay);
-		}
-		dayOfWeekHtml.forEach(function(item, i, arr) {
-			$(_self.root).append(arr[i]);
-		});
+		var temp, html;
+		temp = '{{#days}}'+
+				'<span class="weekday" value="{{dayIndex}}">{{dayName}}</span>'+
+			'{{/days}}';
+		html = Mustache.to_html(temp, this.weekDays);
+		$(html).find('[value='+currentDay+']').addClass('weekday--current');
+		$(this.root).append(html);
 	};
 	window.WeekCalendar = WeekCalendar;
 })();
