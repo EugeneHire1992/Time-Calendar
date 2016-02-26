@@ -12,12 +12,9 @@
 		
 	}
 	Calendar.prototype.buildCover = function() {//все теплы вынести в отдельный файл
-		var wrapper ='<div class="switcher">'+
-						'<%_.each(["Week","Day"],function(index){%>'+
-						'<div class="switcher__button"><%=index%></div><%});%></div>'+
-					'<div class="display"></div>';
-		var templ = _.template(wrapper);
-		this.$node.append(templ);
+		var wrapper =_templates.temp.mainWrapper;
+		var html = Mustache.to_html(wrapper, _templates.dataInfo.mainWrapperData);
+		this.$node.append(html);
 	};
 	Calendar.prototype.renderCalendarInfo = function(rulse) {
 		var _self = this;
