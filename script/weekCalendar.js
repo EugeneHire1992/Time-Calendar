@@ -28,8 +28,8 @@
 				'<span class="weekday" value="{{dayIndex}}">{{dayName}}</span>'+
 			'{{/days}}';
 		html = Mustache.to_html(temp, this.weekDays);
-		$(html).find('[value='+currentDay+']').addClass('weekday--current');
 		$(this.root).append(html);
+		$(this.root).find('.weekday').filter('[value='+currentDay+']').addClass('weekday--current');
 	};
 	window.WeekCalendar = WeekCalendar;
 })();
