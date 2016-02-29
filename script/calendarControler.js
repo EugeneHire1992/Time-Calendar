@@ -3,6 +3,7 @@
 
 	function Calendar(node) {//вынести объекты в отельные файлы
 		this.$node = $(node);
+		this.calendarModel = new CalendarModel();
 		this.buildCover();
 		this.root = $(node).find('.display');
 		this.calendarClock = new Clock(this.root);
@@ -11,33 +12,33 @@
 		this.switchCalendarInfo(this.$node);
 		
 	}
-	Calendar.prototype.buildCover = function() {//все теплы вынести в отдельный файл
-		var wrapper =_templates.temp.mainWrapper;
-		var html = Mustache.to_html(wrapper, _templates.dataInfo.mainWrapperData);
+	Calendar.prototype.buildCover = function() {
+		var wrapper = this.calendarModel.mainWrapper();
+		var data = this.calendarModel.mainWrapperData();
+		var html = Mustache.to_html(wrapper, data);
 		this.$node.append(html);
 	};
 	Calendar.prototype.renderCalendarInfo = function(rulse) {
 		var _self = this;
-		_self.root.html('');
-		clearInterval(_self.intervalClock);
+		this.root.html('');
+		clearInterval(this.intervalClock);
 		switch (rulse) {
 			case 'Week':
-				_self.calendarWeekCalendar.renderWeek();
+				this.calendarWeekCalendar.renderWeek();
 				break;
 			case 'Day':
-				_self.intervalClock = setInterval(function() {
+				this.intervalClock = setInterval(function() {
 					return _self.calendarClock.renderClock();
 				}, 1000);
 				break;
 			default:
-				_self.calendarWeekCalendar.renderWeek();
+				this.calendarWeekCalendar.renderWeek();
 				break;
 		}
 	};
 	Calendar.prototype.switchCalendarInfo = function(node) {
 		var _self = this;
 		var $bnt = node.find('.switcher__button');
-		_self.intervalClock = null;
 		$bnt.on('click', function() {
 			_self.renderCalendarInfo(this.textContent);
 		});
