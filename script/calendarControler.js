@@ -13,9 +13,9 @@
 		
 	}
 	Calendar.prototype.buildCover = function() {
-		var wrapper = this.calendarModel.mainWrapper();
-		var data = this.calendarModel.mainWrapperData();
-		var html = Mustache.to_html(wrapper, data);
+		var calendarMainCover = this.calendarModel.getCalendarMainCover();
+		var calendarMainData = this.calendarModel.getCalendarMainData();
+		var html = Mustache.to_html(calendarMainCover, calendarMainData);
 		this.$node.append(html);
 	};
 	Calendar.prototype.renderCalendarInfo = function(rulse) {

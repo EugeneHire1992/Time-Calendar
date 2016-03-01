@@ -4,26 +4,26 @@
 	function CalendarModel() {
 		var wrapper, wrapperData;
 
-		this.setWrapper = function() {
+		var setCalendarMainCover = function() {
 			wrapper = '<div class="switcher">' +
 				'{{#buttots}}<div class="switcher__button">{{.}}</div>{{/buttots}}</div>' +
 				'<div class="display"></div>';
-			return wrapper;
 		};
-
-		this.setWrapperData = function() {
+		var setCalendarMainData = function() {
 			wrapperData = {
 				buttots: ["Week", "Day"]
 			};
+		};
+		this.getCalendarMainCover = function() {
+			setCalendarMainCover();
+			return wrapper;
+		};
+
+		this.getCalendarMainData = function() {
+			setCalendarMainData();
 			return wrapperData;
 		};
 	}
-	CalendarModel.prototype.mainWrapper = function() {
-		return this.setWrapper();
-	};
-	CalendarModel.prototype.mainWrapperData = function() {
-		return this.setWrapperData();
-	};
 
 	window.CalendarModel = CalendarModel;
 })();

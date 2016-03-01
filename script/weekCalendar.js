@@ -7,11 +7,11 @@
 
 	WeekCalendar.prototype.renderWeek = function() {
 		var currentDay = this.WeekCalendarModel.daySet();
-		var temp, html, data;
-		temp = this.WeekCalendarModel.weekCalendarTemp();
-		data = this.WeekCalendarModel.weekCalendarData();
-		html = Mustache.to_html(temp, data);
-		$(this.root).append(html);
+		var weekTempl, weekHtml, weekData;
+		weekTempl = this.WeekCalendarModel.getWeekTempl();
+		weekData = this.WeekCalendarModel.getWeekData();
+		weekHtml = Mustache.to_html(weekTempl, weekData);
+		$(this.root).append(weekHtml);
 		$(this.root).find('.weekday').filter('[value='+currentDay+']').addClass('weekday--current');
 	};
 	window.WeekCalendar = WeekCalendar;

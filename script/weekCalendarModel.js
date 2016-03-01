@@ -3,14 +3,12 @@
 	function WeekCalendarModel() {
 		var wrapper, wrapperData;
 
-		this.setWrapper = function() {
+		var setWeekTempl = function(){
 			wrapper = '{{#days}}' +
 				'<span class="weekday" value="{{dayIndex}}">{{dayName}}</span>' +
 				'{{/days}}';
-			return wrapper;
 		};
-
-		this.setWrapperData = function() {
+		var setWeekData = function(){
 			wrapperData = {
 				days: [{
 					dayName: 'Monday',
@@ -35,15 +33,18 @@
 					dayIndex: '6'
 				}]
 			};
+		};
+		this.getWeekTempl = function() {
+			setWeekTempl();
+			return wrapper;
+		};
+
+		this.getWeekData = function() {
+			setWeekData();
 			return wrapperData;
 		};
 	}
-	WeekCalendarModel.prototype.weekCalendarTemp = function() {
-		return this.setWrapper();
-	};
-	WeekCalendarModel.prototype.weekCalendarData = function() {
-		return this.setWrapperData();
-	};
+
 	WeekCalendarModel.prototype.daySet = function() {
 		var currentDate = new Date();
 		var currentDay = currentDate.getDay();
