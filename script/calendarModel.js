@@ -4,23 +4,23 @@
 	function CalendarModel() {
 		var wrapper, wrapperData;
 
-		var setCalendarMainCover = function() {
+		var setMainCover = function() {
 			wrapper = '<div class="switcher">' +
 				'{{#buttots}}<div class="switcher__button">{{.}}</div>{{/buttots}}</div>' +
 				'<div class="display"></div>';
 		};
-		var setCalendarMainData = function() {
+		var setMainData = function() {
 			wrapperData = {
 				buttots: ["Week", "Day"]
 			};
 		};
-		this.getCalendarMainCover = function() {
-			setCalendarMainCover();
+		this.getMainCover = function() {
+			setMainCover();
 			return wrapper;
 		};
 
-		this.getCalendarMainData = function() {
-			setCalendarMainData();
+		this.getMainData = function() {
+			setMainData();
 			return wrapperData;
 		};
 	}

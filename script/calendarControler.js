@@ -13,8 +13,8 @@
 		
 	}
 	Calendar.prototype.buildCover = function() {
-		var calendarMainCover = this.calendarModel.getCalendarMainCover();
-		var calendarMainData = this.calendarModel.getCalendarMainData();
+		var calendarMainCover = this.calendarModel.getMainCover();
+		var calendarMainData = this.calendarModel.getMainData();
 		var html = Mustache.to_html(calendarMainCover, calendarMainData);
 		this.$node.append(html);
 	};
