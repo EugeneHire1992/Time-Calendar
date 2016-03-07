@@ -12,7 +12,6 @@
   background: tomato;
   color: white;
 }
-
 .display {
   font-size: 35px;  
   text-align: center; 
@@ -22,15 +21,27 @@
   padding: 50px;
   min-width: 100%:
 }
-
+.note{
+  border-radius: 4px;
+  background: white;
+  color: SkyBlue;
+  width: 70%;
+  max-width: 270px;
+  font-size: 18px;
+}
+.note div{
+  max-height: 40px;
+  overflow: hidden;
+}
 .weekday {
+  cursor: pointer;
   border-radius: 4px;
   background: SkyBlue;
-  colro: white;
+  color: white;
   padding: 15px;
-  font-size: 18px;  
+  font-size: 18px; 
+  margin: 10px;
 }
-
 .weekday--current {
   margin-top: -4px;
   padding: 19px;

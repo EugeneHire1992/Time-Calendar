@@ -3,59 +3,19 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script type="text/javascript" src="script/jquery-2.1.4.js"></script>
 	<script type="text/javascript" src="script/mustache.js"></script>
+	<script type="text/javascript" src="script/weekCalendarView.js"></script>
 	<script type="text/javascript" src="script/calendarModel.js"></script>
 	<script type="text/javascript" src="script/weekCalendarModel.js"></script>
 	<script type="text/javascript" src="script/clockModel.js"></script>
 	<script type="text/javascript" src="script/clock.js"></script>
 	<script type="text/javascript" src="script/weekCalendar.js"></script>
 	<script type="text/javascript" src="script/calendarControler.js"></script>
-	<style>
-		.switcher {
-		  margin-top: 50px;
-		  text-align: center;
-		}
-		.switcher__button {
-		  cursor: pointer;
-		  border-radius: 4px;
-		  display: inline-block;
-		  margin: 0 50px;
-		  padding: 20px;
-		  font-size: 22px;
-		  background: tomato;
-		  color: white;
-		}
-
-		.display {
-		  font-size: 35px;  
-		  text-align: center; 
-		  margin-top: 30px;
-		  color: white;
-		  background: Wheat;
-		  padding: 50px;
-		  min-width: 100%:
-		}
-
-		.weekday {
-		  border-radius: 4px;
-		  background: SkyBlue;
-		  color: white;
-		  padding: 15px;
-		  font-size: 18px; 
-		  margin: 0 5px;
-		}
-
-		.weekday--current {
-		  margin-top: -4px;
-		  padding: 19px;
-		  background: SlateBlue;
-		}
-	</style>
 </head>
 <body>
 	<div id="root">
-		
 	</div>
 	<script>
 		var calendar = new Calendar(root);
