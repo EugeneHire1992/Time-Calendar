@@ -4,8 +4,8 @@
 
 	function WeekCalendarView() {
 		var initWeekTempl = function() {
-			wrapper = '<center><table>{{#days}}<tr value="{{dayIndex}}">' +
-				'<td class="weekday">{{dayName}}</td>' +
+			wrapper = '<center><table>{{#days}}<tr>' +
+				'<td class="weekday js-weekday" value="{{dayIndex}}">{{dayName}}</td>' +
 				'<td class="note"><span><div>Note:</span>{{noteInfo}}</div></td></tr>{{/days}}</table></center>';
 		};
 		var initNoteTempl = function() {

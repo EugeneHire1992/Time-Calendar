@@ -4,7 +4,7 @@
 	function CalendarView() {
 		var wrapper;
 
-		var setMainCover = function() {//вынести во вью
+		var setMainCover = function() {
 			wrapper = '<div class="switcher">' +
 				'{{#buttots}}<div class="switcher__button">{{.}}</div>{{/buttots}}</div>' +
 				'<div class="display"></div>';

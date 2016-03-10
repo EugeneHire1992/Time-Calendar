@@ -4,6 +4,7 @@
 	function Calendar(node) {//вынести объекты в отельные файлы
 		this.$node = $(node);
 		this.calendarModel = new CalendarModel();
+		this.calendarView = new CalendarView();
 		this.buildCover();
 		this.root = $(node).find('.display');
 		this.calendarClock = new Clock(this.root);
@@ -13,7 +14,7 @@
 		
 	}
 	Calendar.prototype.buildCover = function() {
-		var calendarMainCover = this.calendarModel.getMainCover();
+		var calendarMainCover = this.calendarView.getMainCover();
 		var calendarMainData = this.calendarModel.getMainData();
 		var html = Mustache.to_html(calendarMainCover, calendarMainData);
 		this.$node.append(html);

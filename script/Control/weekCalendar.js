@@ -2,21 +2,20 @@
 	'use strict';
 
 	function WeekCalendar(node) {
-		this.root = node;
+		this.$root = node;
 		this.WeekCalendarModel = new WeekCalendarModel();
 		this.WeekCalendarView = new WeekCalendarView();
 	}
 
 	WeekCalendar.prototype.renderWeek = function() {
 		var currentDay = this.WeekCalendarModel.daySet();
-		var weekTempl, weekHtml, weekData, noteData;
+		var weekTempl, weekHtml, weekData;
 		weekTempl = this.WeekCalendarView.getWeekTempl();
 		weekData = this.WeekCalendarModel.getWeekData();
 		weekHtml = Mustache.to_html(weekTempl, weekData);
-		$(this.root).append(weekHtml);
-		$(this.root).find('tr')
+		this.$root.append(weekHtml);
+		this.$root.find('.js-weekday')
 			.filter('[value=' + currentDay + ']')
-			.find('.weekday')
 			.addClass('weekday--current');
 		this.switchNote();
 	};
@@ -29,10 +28,10 @@
 		var nodeTempl, nodeHtml;
 		nodeTempl = this.WeekCalendarView.getNoteTempl();
 		nodeHtml = Mustache.to_html(nodeTempl, noteData);
-		this.root.html('').append(nodeHtml);
+		this.$root.html('').append(nodeHtml);
 	};
 	WeekCalendar.prototype.switchNote = function() {
-		var $bnt = $(this.root).find('.weekday');
+		var $bnt = this.$root.find('.js-weekday');
 		$bnt.on('click', this.renderNote.bind(this));
 	};
 
