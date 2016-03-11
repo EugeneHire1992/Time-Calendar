@@ -5,6 +5,7 @@
 		this.$root = node;
 		this.WeekCalendarModel = new WeekCalendarModel();
 		this.WeekCalendarView = new WeekCalendarView();
+		this.noteControl = new NoteCalendarControler();
 	}
 
 	WeekCalendar.prototype.renderWeek = function() {
@@ -17,22 +18,12 @@
 		this.$root.find('.js-weekday')
 			.filter('[value=' + currentDay + ']')
 			.addClass('weekday--current');
-		this.switchNote();
+		this.switchWeek();
 	};
-	WeekCalendar.prototype.renderNote = function(event) {
-		var target = event.target.parentNode;
-		var noteData = {
-			currentDay: target.firstChild.textContent,
-			currentNote: target.lastChild.textContent
-		};
-		var nodeTempl, nodeHtml;
-		nodeTempl = this.WeekCalendarView.getNoteTempl();
-		nodeHtml = Mustache.to_html(nodeTempl, noteData);
-		this.$root.html('').append(nodeHtml);
-	};
-	WeekCalendar.prototype.switchNote = function() {
+	
+	WeekCalendar.prototype.switchWeek = function() {
 		var $bnt = this.$root.find('.js-weekday');
-		$bnt.on('click', this.renderNote.bind(this));
+		$bnt.on('click', this.noteControl.renderNote.bind(this));
 	};
 
 	window.WeekCalendar = WeekCalendar;
